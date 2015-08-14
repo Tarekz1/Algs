@@ -1,6 +1,5 @@
 
 #include "PPCA.h"
-#include "linalg.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -74,7 +73,7 @@ void PPCA::cAlg_a(){
 	// alg 4.3
 	for(int i=0; i<itr; i++){
 	    
-  alglib::cmatrixgemm(data_t.rows(), Y.cols(), data_t.cols(), 1.0, data_t, 0, 0, 0, Y, 0, 0, 0, 0, tmp, 0, 0);
+        alglib::cmatrixgemm(data_t.rows(), Y.cols(), data_t.cols(), 1.0, data_t, 0, 0, 0, Y, 0, 0, 0, 0, tmp, 0, 0);
 	alglib::cmatrixgemm(data.rows(), tmp.cols(), data.cols(), 1.0, data, 0, 0, 0, tmp, 0, 0, 0, 0, Y, 0, 0);
 	
 	 }
@@ -152,9 +151,9 @@ double PPCA::err(){
 	tmp.setlength(Q_t.rows(), data.cols());
 	tmp2.setlength(Q.rows(), tmp.cols());
 	alglib::cmatrixgemm(Q_t.rows(), data.cols(), Q_t.cols(), 1.0, Q_t, 0, 0, 0, data, 0, 0, 0, 0, tmp, 0, 0);
-  alglib::cmatrixgemm(Q.rows(), tmp.cols(), Q.cols(), 1.0, Q, 0, 0, 0, tmp, 0, 0, 0, 0, tmp2, 0, 0);
+        alglib::cmatrixgemm(Q.rows(), tmp.cols(), Q.cols(), 1.0, Q, 0, 0, 0, tmp, 0, 0, 0, 0, tmp2, 0, 0);
 
-  return norm_L2(csub(data,tmp2));
+        return norm_L2(csub(data,tmp2));
 
 }
 
